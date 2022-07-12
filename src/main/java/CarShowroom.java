@@ -46,13 +46,13 @@ public class CarShowroom {
             String name = Thread.currentThread().getName();
             try {
                 while (cars.isEmpty()) {
-                    System.out.println("Посетилель " + name + " ожидает в очереди");
+                    System.out.println("Посетитель " + name + " ожидает в очереди");
                     condition.await();
                 }
             } catch (InterruptedException ignored) {
             }
             Car car = cars.pollFirst();
-            System.out.println("Посетилель " + name + " купил авто марки " + car.getBrand() + " и покинул салон");
+            System.out.println("Посетитель " + name + " купил авто марки " + car.getBrand() + " и покинул салон");
         } finally {
             lock.unlock();
         }
