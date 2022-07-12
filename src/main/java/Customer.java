@@ -1,6 +1,6 @@
 public class Customer implements Runnable {
     private final CarShowroom showroom;
-    private final long decisionMakingTime;
+    private final int decisionMakingTime;
 
     public Customer(CarShowroom showroom) {
         this.showroom = showroom;
