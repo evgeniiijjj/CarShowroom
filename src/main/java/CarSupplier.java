@@ -1,8 +1,8 @@
 public class CarSupplier implements Runnable {
-    private CarShowroom showroom;
-    private String brand;
-    private int numCars;
-    private long deliveryTime;
+    private final CarShowroom showroom;
+    private final String brand;
+    private final int numCars;
+    private final int deliveryTime;
 
     public CarSupplier(CarShowroom showroom, String brand) {
         this.showroom = showroom;
