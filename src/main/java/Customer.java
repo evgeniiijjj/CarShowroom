@@ -4,7 +4,7 @@ public class Customer implements Runnable {
 
     public Customer(CarShowroom showroom) {
         this.showroom = showroom;
-        this.decisionMakingTime = showroom.decisionMakingTime;
+        this.decisionMakingTime = showroom.getDecisionMakingTime();
     }
 
     @Override
@@ -13,6 +13,7 @@ public class Customer implements Runnable {
         try {
             System.out.println("Посетитель " + name + " вошел в салон");
             Thread.sleep(decisionMakingTime);
+            System.out.println("Посетитель " + name + " принял решение о покупке");
         } catch (InterruptedException ignored) { }
         showroom.buyCar();
     }

@@ -7,8 +7,8 @@ public class CarSupplier implements Runnable {
     public CarSupplier(CarShowroom showroom, String brand) {
         this.showroom = showroom;
         this.brand = brand;
-        this.numCars = showroom.numCars;
-        this.deliveryTime = showroom.deliveryTime;
+        this.numCars = showroom.getNumCars();
+        this.deliveryTime = showroom.getDeliveryTime();
     }
 
     @Override
