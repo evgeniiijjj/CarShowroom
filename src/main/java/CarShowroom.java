@@ -3,32 +3,44 @@ import java.util.LinkedList;
 
 public class CarShowroom {
     private final Deque<Car> cars = new LinkedList<>();
-    private final static int numCustomers = 10;
-    private final static int pause = 500;
-    final int numCars = 10; // переменная не приватная для доступа к ней из класса CarSupplier
-    final int deliveryTime = 1000; // переменная не приватная для доступа к ней из класса CarSupplier
-    final int decisionMakingTime = 1000; // переменная не приватная для доступа к ней из класса Customer
+    private final int numCustomers = 10;
+    private final int pause = 500;
+    private final int numCars = 10;
+    private final int deliveryTime = 1000;
+    private final int decisionMakingTime = 1000;
 
     public static void main(String[] args) throws InterruptedException {
         CarShowroom showroom = new CarShowroom();
         System.out.println("Автосалон открылся");
         Thread supplier = new Thread(new CarSupplier(showroom, "Toyota"));
         supplier.start();
-        Thread.sleep(pause);
-        for (int i = 0; i < numCustomers; i++) {
+        Thread.sleep(showroom.pause);
+        for (int i = 0; i < showroom.numCustomers; i++) {
             Thread customer = new Thread(new Customer(showroom));
             customer.setDaemon(true);
             customer.start();
-            Thread.sleep(pause);
+            Thread.sleep(showroom.pause);
         }
         supplier.join();
-        Thread.sleep(pause);
+        Thread.sleep(showroom.pause);
         System.out.println("Автосалон закрылся");
     }
 
     public synchronized void putCar(Car car) {
         cars.addLast(car);
         notify();
+    }
+
+    public int getNumCars() {
+        return numCars;
+    }
+
+    public int getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public int getDecisionMakingTime() {
+        return decisionMakingTime;
     }
 
     public synchronized void buyCar() {

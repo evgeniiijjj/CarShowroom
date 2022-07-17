@@ -4,7 +4,7 @@ public class Customer implements Runnable {
 
     public Customer(CarShowroom showroom) {
         this.showroom = showroom;
-        this.decisionMakingTime = showroom.decisionMakingTime;
+        this.decisionMakingTime = showroom.getDecisionMakingTime();
     }
 
     @Override
