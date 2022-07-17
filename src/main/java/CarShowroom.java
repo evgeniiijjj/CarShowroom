@@ -47,7 +47,7 @@ public class CarShowroom {
         String name = Thread.currentThread().getName();
         try {
             while (cars.isEmpty()) {
-                System.out.println("Посетилель " + name + " ожидает в очереди");
+                System.out.println("Посетилель " + name + " ожидает в очереди поставки автомобиля");
                 wait();
             }
         } catch (InterruptedException ignored) {

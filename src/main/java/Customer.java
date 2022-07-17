@@ -13,6 +13,7 @@ public class Customer implements Runnable {
         try {
             System.out.println("Посетитель " + name + " вошел в салон");
             Thread.sleep(decisionMakingTime);
+            System.out.println("Посетитель " + name + " принял решение о покупке автомобиля");
         } catch (InterruptedException ignored) { }
         showroom.buyCar();
     }
