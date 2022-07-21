@@ -7,9 +7,9 @@ public class CarShowroom {
     private final Deque<Car> cars = new LinkedList<>();
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition condition = lock.newCondition();
-    private final int numCustomers = 10;
+    private final int customersNum = 10;
     private final int pause = 500;
-    private final int numCars = 10;
+    private final int carsNum = 10;
     private final int deliveryTime = 1000;
     private final int decisionMakingTime = 1000;
 
@@ -19,7 +19,7 @@ public class CarShowroom {
         Thread supplier = new Thread(new CarSupplier(showroom, "Toyota"));
         supplier.start();
         Thread.sleep(showroom.pause);
-        for (int i = 0; i < showroom.numCustomers; i++) {
+        for (int i = 0; i < showroom.customersNum; i++) {
             Thread customer = new Thread(new Customer(showroom));
             customer.setDaemon(true);
             customer.start();
@@ -30,8 +30,8 @@ public class CarShowroom {
         System.out.println("Автосалон закрылся");
     }
 
-    public int getNumCars() {
-        return numCars;
+    public int getCarsNum() {
+        return carsNum;
     }
 
     public int getDeliveryTime() {
