@@ -3,44 +3,32 @@ import java.util.LinkedList;
 
 public class CarShowroom {
     private final Deque<Car> cars = new LinkedList<>();
-    private final int numCustomers = 10;
-    private final int pause = 500;
-    private final int numCars = 10;
-    private final int deliveryTime = 1000;
-    private final int decisionMakingTime = 1000;
+    public static final int NUMBER_OF_CUSTOMERS = 10;
+    public static final int PAUSE = 500;
+    public static final int NUMBER_OF_CARS = 10;
+    public static final int DELIVERY_TIME = 1000;
+    public static final int DECISION_MAKING_TIME = 1000;
 
     public static void main(String[] args) throws InterruptedException {
         CarShowroom showroom = new CarShowroom();
         System.out.println("Автосалон открылся");
         Thread supplier = new Thread(new CarSupplier(showroom, "Toyota"));
         supplier.start();
-        Thread.sleep(showroom.pause);
-        for (int i = 0; i < showroom.numCustomers; i++) {
+        Thread.sleep(PAUSE);
+        for (int i = 0; i < NUMBER_OF_CUSTOMERS; i++) {
             Thread customer = new Thread(new Customer(showroom));
             customer.setDaemon(true);
             customer.start();
-            Thread.sleep(showroom.pause);
+            Thread.sleep(PAUSE);
         }
         supplier.join();
-        Thread.sleep(showroom.pause);
+        Thread.sleep(PAUSE);
         System.out.println("Автосалон закрылся");
     }
 
     public synchronized void putCar(Car car) {
         cars.addLast(car);
         notify();
-    }
-
-    public int getNumCars() {
-        return numCars;
-    }
-
-    public int getDeliveryTime() {
-        return deliveryTime;
-    }
-
-    public int getDecisionMakingTime() {
-        return decisionMakingTime;
     }
 
     public synchronized void buyCar() {
